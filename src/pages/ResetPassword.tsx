@@ -17,18 +17,38 @@ export function ResetPassword() {
   const [checking, setChecking] = useState(true);
 
   useEffect(() => {
-    // When user clicks link from email, Supabase sets session via URL hash
-    supabase.auth.getSession().then(({ data }) => {
-      if (data.session) {
-        setValidSession(true);
-      }
-      setChecking(false);
-    });
+    // Check if there's a valid session from the recovery link
+    const checkSession = async () => {
+      try {
+        const { data: { session }, error: sessionError } = await supabase.auth.getSession();
+        
+        if (session) {
+          setValidSession(true);
+          setChecking(false);
+          return;
+        }
 
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((event) => {
-      if (event === 'PASSWORD_RECOVERY') {
-        setValidSession(true);
+        // Wait a bit for auth state to update from URL hash
+        await new Promise(resolve => setTimeout(resolve, 500));
+        
+        const { data: { session: newSession } } = await supabase.auth.getSession();
+        if (newSession) {
+          setValidSession(true);
+        }
         setChecking(false);
+      } catch (err) {
+        console.error('Session check error:', err);
+        setChecking(false);
+      }
+    };
+
+    checkSession();
+
+    // Listen for auth state changes
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      console.log('Auth event:', event, 'Session:', !!session);
+      if (session && (event === 'PASSWORD_RECOVERY' || event === 'SIGNED_IN')) {
+        setValidSession(true);
       }
     });
 
