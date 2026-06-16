@@ -21,7 +21,7 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
             className="w-16 h-16 rounded-2xl flex items-center justify-center font-black text-[#012169] text-2xl"
             style={{ background: '#FEDD00' }}
           >
-            CC
+            <img src="/brasil.ico" alt="Brasil" className="w-10 h-10" />
           </div>
           <svg className="animate-spin" width="24" height="24" viewBox="0 0 24 24" fill="none">
             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="#009739" strokeWidth="4" />
@@ -68,7 +68,7 @@ function AppRouter({ theme, onToggleTheme }: { theme: 'light' | 'dark'; onToggle
             className="w-16 h-16 rounded-2xl flex items-center justify-center font-black text-[#012169] text-2xl animate-pulse"
             style={{ background: '#FEDD00' }}
           >
-            CC
+            <img src="/brasil.ico" alt="Brasil" className="w-10 h-10" />
           </div>
           <svg className="animate-spin" width="24" height="24" viewBox="0 0 24 24" fill="none">
             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="#009739" strokeWidth="4" />

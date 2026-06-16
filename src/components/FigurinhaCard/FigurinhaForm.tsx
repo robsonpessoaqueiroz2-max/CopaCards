@@ -138,7 +138,7 @@ export function FigurinhaForm({ open, onClose, userId, editData, onSuccess }: Fi
         <div className="flex flex-col items-center gap-3">
           <div
             className="w-32 h-40 rounded-xl border-2 border-dashed border-[#FEDD00] overflow-hidden cursor-pointer flex items-center justify-center relative"
-            style={{ background: 'linear-gradient(145deg, #012169, #003580)' }}
+            style={{ background: '#F3F4F6' }}
             onClick={() => fileInputRef.current?.click()}
           >
             {imagePreview ? (

@@ -63,14 +63,31 @@ export function Cadastro() {
       {/* Left side */}
       <div
         className="hidden lg:flex flex-col items-center justify-center w-1/2 p-12 relative overflow-hidden"
-        style={{ background: 'linear-gradient(135deg, #009739 0%, #012169 100%)' }}
+        style={{ background: '#009739' }}
       >
+        <div className="absolute inset-0 opacity-40">
+          {[...Array(20)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute rounded-sm"
+              style={{
+                width: 14 + Math.random() * 20,
+                height: 10 + Math.random() * 18,
+                left: `${(i * 11) % 100}%`,
+                top: `${(i * 14) % 100}%`,
+                background: i % 2 === 0 ? '#012169' : '#FEDD00',
+                opacity: 0.16,
+                transform: 'translate(-50%, -50%)',
+              }}
+            />
+          ))}
+        </div>
         <div className="relative z-10 text-center">
           <div
             className="w-24 h-24 rounded-2xl flex items-center justify-center font-black text-[#012169] text-4xl mx-auto mb-6"
             style={{ background: '#FEDD00', boxShadow: '0 8px 32px rgba(254,221,0,0.4)' }}
           >
-            CC
+            <img src="/brasil.ico" alt="Brasil" className="w-12 h-12" />
           </div>
           <h1 className="text-4xl font-black text-white mb-3">CopaCards</h1>
           <p className="text-white/80 text-lg max-w-sm">
@@ -100,7 +117,7 @@ export function Cadastro() {
               className="w-16 h-16 rounded-2xl flex items-center justify-center font-black text-[#012169] text-2xl mx-auto mb-3"
               style={{ background: '#FEDD00' }}
             >
-              CC
+              <img src="/brasil.ico" alt="Brasil" className="w-10 h-10" />
             </div>
             <h1 className="text-2xl font-black" style={{ color: 'var(--text-primary)' }}>CopaCards</h1>
           </div>

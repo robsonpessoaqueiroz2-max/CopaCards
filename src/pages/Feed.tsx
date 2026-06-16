@@ -32,7 +32,7 @@ export function Feed() {
         >
           <div
             className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
-            style={{ background: 'linear-gradient(135deg, #009739, #012169)' }}
+            style={{ background: '#009739' }}
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FEDD00" strokeWidth="2.5">
               <path d="M12 5v14M5 12h14" strokeLinecap="round" />
@@ -92,7 +92,7 @@ export function Feed() {
         <div className="text-center py-16">
           <div
             className="w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-4"
-            style={{ background: 'linear-gradient(135deg, #012169, #009739)' }}
+            style={{ background: '#012169' }}
           >
             <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#FEDD00" strokeWidth="1.5">
               <rect x="2" y="3" width="20" height="14" rx="2" />

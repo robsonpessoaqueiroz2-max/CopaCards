@@ -120,14 +120,14 @@ export function ResetPassword() {
       <div className="w-full max-w-sm">
         <div className="text-center mb-8">
           <div
-            className="w-16 h-16 rounded-2xl flex items-center justify-center font-black text-[#012169] text-2xl mx-auto mb-3"
+          <div className="w-16 h-16 rounded-2xl flex items-center justify-center overflow-hidden mx-auto mb-3"
             style={{ background: '#FEDD00' }}
           >
-            CC
+            <img src="/brasil.ico" alt="Brasil" className="w-10 h-10" />
           </div>
-          <h1 className="text-2xl font-black" style={{ color: 'var(--text-primary)' }}>Nova Senha</h1>
+          <h1 className="text-2xl font-black" style={{ color: 'var(--text-primary)' }}>Redefinir senha</h1>
           <p className="text-sm mt-1" style={{ color: 'var(--text-secondary)' }}>
-            Digite e confirme sua nova senha
+            Digite e confirme sua nova senha para continuar
           </p>
         </div>
 

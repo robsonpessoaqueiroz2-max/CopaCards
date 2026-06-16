@@ -141,21 +141,26 @@ CREATE POLICY "Deletar próprio perfil"
 -- =====================================================
 -- POLICIES: figurinhas
 -- =====================================================
+-- Permitir que QUALQUER usuário autenticado veja TODAS as figurinhas
 DROP POLICY IF EXISTS "Ver figurinhas" ON public.figurinhas;
 CREATE POLICY "Ver figurinhas"
   ON public.figurinhas FOR SELECT
   USING (true);
 
+-- Permitir que usuários criem suas próprias figurinhas
 DROP POLICY IF EXISTS "Criar figurinha" ON public.figurinhas;
 CREATE POLICY "Criar figurinha"
   ON public.figurinhas FOR INSERT
   WITH CHECK (auth.uid() = user_id);
 
+-- Permitir que usuários editem apenas suas próprias figurinhas
 DROP POLICY IF EXISTS "Editar figurinha" ON public.figurinhas;
 CREATE POLICY "Editar figurinha"
   ON public.figurinhas FOR UPDATE
-  USING (auth.uid() = user_id);
+  USING (auth.uid() = user_id)
+  WITH CHECK (auth.uid() = user_id);
 
+-- Permitir que usuários deletem apenas suas próprias figurinhas
 DROP POLICY IF EXISTS "Deletar figurinha" ON public.figurinhas;
 CREATE POLICY "Deletar figurinha"
   ON public.figurinhas FOR DELETE
@@ -164,16 +169,19 @@ CREATE POLICY "Deletar figurinha"
 -- =====================================================
 -- POLICIES: likes
 -- =====================================================
+-- Permitir que QUALQUER usuário veja TODOS os likes
 DROP POLICY IF EXISTS "Ver likes" ON public.likes;
 CREATE POLICY "Ver likes"
   ON public.likes FOR SELECT
   USING (true);
 
+-- Permitir que usuários autenticados curtam figurinhas
 DROP POLICY IF EXISTS "Curtir" ON public.likes;
 CREATE POLICY "Curtir"
   ON public.likes FOR INSERT
   WITH CHECK (auth.uid() = user_id);
 
+-- Permitir que usuários removam apenas seus próprios likes
 DROP POLICY IF EXISTS "Descurtir" ON public.likes;
 CREATE POLICY "Descurtir"
   ON public.likes FOR DELETE
@@ -182,16 +190,19 @@ CREATE POLICY "Descurtir"
 -- =====================================================
 -- POLICIES: comentarios
 -- =====================================================
+-- Permitir que QUALQUER usuário veja TODOS os comentários
 DROP POLICY IF EXISTS "Ver comentários" ON public.comentarios;
 CREATE POLICY "Ver comentários"
   ON public.comentarios FOR SELECT
   USING (true);
 
+-- Permitir que usuários autenticados comentem
 DROP POLICY IF EXISTS "Comentar" ON public.comentarios;
 CREATE POLICY "Comentar"
   ON public.comentarios FOR INSERT
   WITH CHECK (auth.uid() = user_id);
 
+-- Permitir que usuários deletem apenas seus próprios comentários
 DROP POLICY IF EXISTS "Deletar próprio comentário" ON public.comentarios;
 CREATE POLICY "Deletar próprio comentário"
   ON public.comentarios FOR DELETE

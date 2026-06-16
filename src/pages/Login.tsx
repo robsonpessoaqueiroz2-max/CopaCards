@@ -57,20 +57,20 @@ export function Login() {
       {/* Left side — decorative */}
       <div
         className="hidden lg:flex flex-col items-center justify-center w-1/2 p-12 relative overflow-hidden"
-        style={{ background: 'linear-gradient(135deg, #012169 0%, #009739 100%)' }}
+        style={{ background: '#012169' }}
       >
-        <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0 opacity-40">
           {[...Array(20)].map((_, i) => (
             <div
               key={i}
-              className="absolute rounded-full"
+              className="absolute rounded-sm"
               style={{
-                width: Math.random() * 200 + 50,
-                height: Math.random() * 200 + 50,
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                background: '#FEDD00',
-                opacity: 0.1 + Math.random() * 0.2,
+                width: 14 + Math.random() * 20,
+                height: 10 + Math.random() * 18,
+                left: `${(i * 9) % 100}%`,
+                top: `${(i * 12) % 100}%`,
+                background: i % 2 === 0 ? '#009739' : '#FEDD00',
+                opacity: 0.16,
                 transform: 'translate(-50%, -50%)',
               }}
             />
@@ -81,7 +81,7 @@ export function Login() {
             className="w-24 h-24 rounded-2xl flex items-center justify-center font-black text-[#012169] text-4xl mx-auto mb-6"
             style={{ background: '#FEDD00', boxShadow: '0 8px 32px rgba(254,221,0,0.4)' }}
           >
-            CC
+            <img src="/brasil.ico" alt="Brasil" className="w-12 h-12" />
           </div>
           <h1 className="text-4xl font-black text-white mb-3">CopaCards</h1>
           <p className="text-white/80 text-lg max-w-xs">
@@ -111,7 +111,7 @@ export function Login() {
               className="w-16 h-16 rounded-2xl flex items-center justify-center font-black text-[#012169] text-2xl mx-auto mb-3"
               style={{ background: '#FEDD00' }}
             >
-              CC
+              <img src="/brasil.ico" alt="Brasil" className="w-10 h-10" />
             </div>
             <h1 className="text-2xl font-black" style={{ color: 'var(--text-primary)' }}>CopaCards</h1>
           </div>

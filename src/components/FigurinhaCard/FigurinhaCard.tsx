@@ -54,7 +54,7 @@ export function FigurinhaCard({ figurinha, compact = false }: FigurinhaCardProps
       {/* Image */}
       <div
         className="relative overflow-hidden flex items-center justify-center"
-        style={{ height: compact ? '90px' : '130px', background: 'linear-gradient(180deg, rgba(1,33,105,0.8) 0%, rgba(0,151,57,0.4) 100%)' }}
+        style={{ height: compact ? '90px' : '130px', background: '#F3F4F6' }}
       >
         {figurinha.imagem_url ? (
           <img

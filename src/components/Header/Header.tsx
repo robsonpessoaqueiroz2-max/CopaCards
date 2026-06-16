@@ -85,22 +85,8 @@ export function Header({ theme, onToggleTheme }: HeaderProps) {
         <div className="max-w-6xl mx-auto h-full flex items-center justify-between px-4">
           {/* Logo */}
           <Link to="/feed" className="flex items-center gap-2 group">
-            <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: 'transparent' }}>
-              {/** Inline SVG to allow color switching by theme */}
-              <svg
-                viewBox="0 0 512 512"
-                width="20"
-                height="20"
-                xmlns="http://www.w3.org/2000/svg"
-                aria-hidden
-                focusable="false"
-                style={{ display: 'block' }}
-              >
-                <path
-                  d="M69.191,0v96.863H27.674v41.514h41.516v89.946H27.674v41.513h41.516v89.946H27.674v41.513h41.516V512h415.135V0H69.191z M442.812,470.487H110.704v-69.191h332.108V470.487z M442.812,359.782H110.704V311.35h332.108V359.782z M228.323,269.836 c0-26.706,21.727-48.432,48.432-48.432s48.432,21.727,48.432,48.432H228.323z M442.812,269.836h-76.111 c0-49.596-40.35-89.946-89.946-89.946s-89.946,40.35-89.946,89.946h-76.105V138.377h332.108V269.836z M442.812,96.863H110.704 v-55.35h332.108V96.863z"
-                  fill="#FEDD00"
-                />
-              </svg>
+            <div className="w-8 h-8 rounded-lg flex items-center justify-center overflow-hidden" style={{ background: '#FEDD00' }}>
+              <img src="/brasil.ico" alt="Brasil" className="w-6 h-6" />
             </div>
             <span className="font-black text-white text-lg tracking-tight hidden sm:block">
               Copa<span style={{ color: '#FEDD00' }}>Cards</span>

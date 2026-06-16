@@ -153,19 +153,19 @@ export function Perfil() {
         style={{ background: 'var(--bg-card)', boxShadow: '0 4px 24px var(--shadow)' }}
       >
         {/* Cover */}
-        <div className="h-32 relative" style={{ background: 'linear-gradient(135deg, #012169 0%, #009739 100%)' }}>
-          <div className="absolute inset-0 opacity-20">
+        <div className="h-32 relative" style={{ background: '#012169' }}>
+          <div className="absolute inset-0 opacity-30">
             {[...Array(8)].map((_, i) => (
               <div
                 key={i}
-                className="absolute rounded-full"
+                className="absolute rounded-sm"
                 style={{
-                  width: 60 + i * 20,
-                  height: 60 + i * 20,
+                  width: 18 + (i % 3) * 8,
+                  height: 10 + (i % 4) * 6,
                   left: `${(i * 15) % 100}%`,
-                  top: `${(i * 25) % 100}%`,
-                  background: '#FEDD00',
-                  opacity: 0.15,
+                  top: `${(i * 20) % 100}%`,
+                  background: i % 2 === 0 ? '#009739' : '#FEDD00',
+                  opacity: 0.18,
                   transform: 'translate(-50%, -50%)',
                 }}
               />
