@@ -47,15 +47,37 @@ export function FeedPost({ figurinha, currentUserId, onLike, onDelete, onEdit }:
   const fetchComments = async () => {
     setLoadingComments(true);
     try {
-      const { data } = await supabase
+      // Step 1: Fetch comentarios
+      const { data: comentariosData } = await supabase
         .from('comentarios')
-        .select('*, profiles(username, avatar_url)')
+        .select('*')
         .eq('figurinha_id', figurinha.id)
         .order('created_at', { ascending: true });
-      setComments((data || []).map(c => ({
+
+      if (!comentariosData || comentariosData.length === 0) {
+        setComments([]);
+        return;
+      }
+
+      // Step 2: Fetch profiles for comentarios
+      const userIds = [...new Set(comentariosData.map(c => c.user_id))];
+      const { data: profilesData } = await supabase
+        .from('profiles')
+        .select('id, username, avatar_url')
+        .in('id', userIds);
+
+      const profilesMap: Record<string, any> = {};
+      (profilesData || []).forEach(p => {
+        profilesMap[p.id] = p;
+      });
+
+      // Step 3: Combine data
+      const enrichedComments = (comentariosData || []).map(c => ({
         ...c,
-        profiles: Array.isArray(c.profiles) ? c.profiles[0] : c.profiles,
-      })) as Comment[]);
+        profiles: profilesMap[c.user_id] || null,
+      })) as Comment[];
+
+      setComments(enrichedComments);
     } finally {
       setLoadingComments(false);
     }

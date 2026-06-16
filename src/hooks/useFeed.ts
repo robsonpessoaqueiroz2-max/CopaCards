@@ -31,22 +31,34 @@ export function useFeed(currentUserId?: string | null) {
     setLoading(true);
     setError(null);
     try {
-      const { data, error } = await supabase
+      // Step 1: Fetch figurinhas
+      const { data: figurinhasData, error: figurinhasError } = await supabase
         .from('figurinhas')
-        .select(`
-          *,
-          profiles (id, username, avatar_url)
-        `)
+        .select('*')
         .order('created_at', { ascending: false });
 
-      if (error) throw error;
-
-      // Fetch likes and comments counts
-      const ids = (data || []).map(f => f.id);
-      if (ids.length === 0) {
+      if (figurinhasError) throw figurinhasError;
+      if (!figurinhasData || figurinhasData.length === 0) {
         setFigurinhas([]);
         return;
       }
+
+      // Step 2: Fetch profiles for all figurinhas
+      const userIds = [...new Set((figurinhasData || []).map(f => f.user_id))];
+      const { data: profilesData, error: profilesError } = await supabase
+        .from('profiles')
+        .select('id, username, avatar_url')
+        .in('id', userIds);
+
+      if (profilesError) throw profilesError;
+
+      const profilesMap: Record<string, any> = {};
+      (profilesData || []).forEach(p => {
+        profilesMap[p.id] = p;
+      });
+
+      // Step 3: Fetch likes and comments counts
+      const ids = figurinhasData.map(f => f.id);
 
       const [likesRes, commentsRes, userLikesRes] = await Promise.all([
         supabase.from('likes').select('figurinha_id').in('figurinha_id', ids),
@@ -67,9 +79,10 @@ export function useFeed(currentUserId?: string | null) {
         commentsCounts[c.figurinha_id] = (commentsCounts[c.figurinha_id] || 0) + 1;
       });
 
-      const enriched = (data || []).map(f => ({
+      // Step 4: Combine data
+      const enriched = (figurinhasData || []).map(f => ({
         ...f,
-        profiles: Array.isArray(f.profiles) ? f.profiles[0] : f.profiles,
+        profiles: profilesMap[f.user_id] || null,
         likes_count: likesCounts[f.id] || 0,
         user_liked: userLikedSet.has(f.id),
         comments_count: commentsCounts[f.id] || 0,
@@ -77,6 +90,7 @@ export function useFeed(currentUserId?: string | null) {
 
       setFigurinhas(enriched);
     } catch (err: unknown) {
+      console.error('Feed error:', err);
       setError(err instanceof Error ? err.message : 'Erro ao carregar feed');
     } finally {
       setLoading(false);
