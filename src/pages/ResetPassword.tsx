@@ -119,7 +119,6 @@ export function ResetPassword() {
     <div className="min-h-screen flex items-center justify-center p-6" style={{ background: 'var(--bg)' }}>
       <div className="w-full max-w-sm">
         <div className="text-center mb-8">
-          <div
           <div className="w-16 h-16 rounded-2xl flex items-center justify-center overflow-hidden mx-auto mb-3"
             style={{ background: '#FEDD00' }}
           >
