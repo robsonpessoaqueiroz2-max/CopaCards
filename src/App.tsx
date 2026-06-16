@@ -9,6 +9,7 @@ import { ResetPassword } from './pages/ResetPassword';
 import { Feed } from './pages/Feed';
 import { Perfil } from './pages/Perfil';
 import { Mensagens } from './pages/Mensagens';
+import { Buscar } from './pages/Buscar';
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth();
@@ -47,6 +48,7 @@ function AppLayout({ theme, onToggleTheme }: { theme: 'light' | 'dark'; onToggle
             <Route path="/feed" element={<ProtectedRoute><Feed /></ProtectedRoute>} />
             <Route path="/perfil/:id" element={<ProtectedRoute><Perfil /></ProtectedRoute>} />
             <Route path="/mensagens" element={<ProtectedRoute><Mensagens /></ProtectedRoute>} />
+            <Route path="/buscar" element={<ProtectedRoute><Buscar /></ProtectedRoute>} />
             <Route path="/" element={<Navigate to="/feed" replace />} />
             <Route path="*" element={<Navigate to="/feed" replace />} />
           </Routes>
