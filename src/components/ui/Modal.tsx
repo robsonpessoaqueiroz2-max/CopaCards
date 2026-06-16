@@ -27,11 +27,11 @@ export function Modal({ open, onClose, title, children, maxWidth = 'max-w-md' }:
       onClick={onClose}
     >
       <div
-        className={`w-full ${maxWidth} bg-[var(--bg-card)] rounded-2xl shadow-2xl border border-[var(--border)] fade-in`}
+        className={`w-full ${maxWidth} bg-[var(--bg-card)] rounded-2xl shadow-2xl border border-[var(--border)] fade-in flex flex-col max-h-[90vh]`}
         onClick={e => e.stopPropagation()}
       >
         {title && (
-          <div className="flex items-center justify-between px-6 py-4 border-b border-[var(--border)]">
+          <div className="flex items-center justify-between px-6 py-4 border-b border-[var(--border)] flex-shrink-0">
             <h2 className="text-lg font-bold text-[var(--text-primary)]">{title}</h2>
             <button
               onClick={onClose}
@@ -43,7 +43,7 @@ export function Modal({ open, onClose, title, children, maxWidth = 'max-w-md' }:
             </button>
           </div>
         )}
-        <div className="p-6">{children}</div>
+        <div className="p-6 overflow-y-auto flex-1">{children}</div>
       </div>
     </div>
   );
