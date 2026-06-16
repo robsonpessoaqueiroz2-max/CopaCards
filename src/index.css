@@ -1,0 +1,188 @@
+@import "tailwindcss";
+
+@theme {
+  --color-verde: #009739;
+  --color-amarelo: #FEDD00;
+  --color-azul: #012169;
+  --color-branco: #FFFFFF;
+  --color-escuro: #0F172A;
+
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  --verde: #009739;
+  --amarelo: #FEDD00;
+  --azul: #012169;
+  --branco: #FFFFFF;
+  --escuro: #0F172A;
+
+  --bg: #f0f4f8;
+  --bg-card: #ffffff;
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  --border: #e2e8f0;
+  --shadow: rgba(1, 33, 105, 0.1);
+}
+
+[data-theme="dark"] {
+  --bg: #0F172A;
+  --bg-card: #1e293b;
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --border: #334155;
+  --shadow: rgba(0, 0, 0, 0.3);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  background-color: var(--bg);
+  color: var(--text-primary);
+  transition: background-color 0.3s, color 0.3s;
+  margin: 0;
+  padding: 0;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #009739;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #007a2e;
+}
+
+/* Figurinha Card */
+.figurinha-card {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  background: linear-gradient(145deg, #012169, #003580);
+  border: 3px solid #FEDD00;
+  box-shadow: 0 0 20px rgba(254, 221, 0, 0.3), 0 8px 32px rgba(1, 33, 105, 0.4);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.figurinha-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 0 30px rgba(254, 221, 0, 0.5), 0 16px 40px rgba(1, 33, 105, 0.5);
+}
+
+.figurinha-card-golden {
+  border-color: #FFD700;
+  box-shadow: 0 0 25px rgba(255, 215, 0, 0.5), 0 8px 32px rgba(1, 33, 105, 0.4);
+}
+
+.figurinha-card-green {
+  border-color: #009739;
+  box-shadow: 0 0 20px rgba(0, 151, 57, 0.4), 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Brazil Flag Gradient */
+.brasil-gradient {
+  background: linear-gradient(135deg, #009739 0%, #012169 50%, #009739 100%);
+}
+
+.amarelo-gradient {
+  background: linear-gradient(135deg, #FEDD00, #FFB300);
+}
+
+/* Toast */
+.hot-toast-container {
+  z-index: 9999;
+}
+
+/* Animation */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.shimmer {
+  background: linear-gradient(90deg, var(--border) 25%, var(--bg) 50%, var(--border) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+.slide-in {
+  animation: slideIn 0.3s ease-out;
+}
+
+/* Input styles */
+input, textarea, select {
+  outline: none;
+}
+
+input:focus, textarea:focus, select:focus {
+  ring: 2px solid var(--verde);
+}
+
+/* Modal backdrop */
+.modal-backdrop {
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+}
+
+/* Avatar */
+.avatar-ring {
+  ring: 3px solid #FEDD00;
+}
+
+/* Status badges */
+.badge-tenho {
+  background: #009739;
+  color: white;
+}
+
+.badge-quero {
+  background: #012169;
+  color: white;
+}
+
+.badge-repetida {
+  background: #FEDD00;
+  color: #012169;
+}
+
+/* Chat bubbles */
+.bubble-sent {
+  background: #009739;
+  color: white;
+  border-radius: 18px 18px 4px 18px;
+}
+
+.bubble-received {
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  border-radius: 18px 18px 18px 4px;
+}
